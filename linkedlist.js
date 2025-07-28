@@ -1,9 +1,20 @@
-export default class LinkedList {
-    append(value) {
+class Node {
+    constructor(value, nextNode) {
+        this.value = value;
+        this.nextNode = null;
+    }
+}
 
+export default class LinkedList {
+    constructor() {
+        this.head = null;
+        this.tail = null;
+    }
+    append(value) {
+        new currentNode = new Node(value);
     }
     prepend(value) {
-
+        this.head = value;
     }
     size() {
 
@@ -31,9 +42,3 @@ export default class LinkedList {
     }
 }
 
-class Node {
-    constructor(value, nextNode) {
-        this.value = null;
-        this.nextNode = null;
-    }
-}
