@@ -1,7 +1,7 @@
 class Node {
     constructor(value, nextNode) {
         this.value = value;
-        this.nextNode = nextNode;
+        this.nextNode = null;
     }
 }
 
@@ -13,13 +13,14 @@ export default class LinkedList {
     }
 
     append(value) {
+        const currentNode = new Node(value);
         this.count++;
-        if(this.head == null && this.tail == null) {
-            this.head = new Node(value, null);
+        if(this.head == null) {
+            this.head = currentNode;
+            this.tail = currentNode.nextNode;
         }
         else {
-            this.tail = new Node(value, null);
-            this.head = this.tail;
+            this.head.nextNode = currentNode;
         }
         return console.log(this);
     }
