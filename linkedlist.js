@@ -1,26 +1,31 @@
 class Node {
-    constructor(value, nextNode) {
+    constructor(value = null, nextNode = null) {
         this.value = value;
-        this.nextNode = null;
+        this.nextNode = nextNode;
     }
 }
 
 export default class LinkedList {
     constructor() {
-        this.head = null;
-        this.tail = null;
+        this.headNode = null;
+        this.tailNode = null;
         this.count = 0;
     }
 
     append(value) {
-        const currentNode = new Node(value);
-        this.count++;
-        if(this.head == null) {
-            this.head = currentNode;
-            this.tail = currentNode.nextNode;
+        if(this.headNode == null) {
+            const currentNode = new Node(value, this.tailNode);
+            this.count++;
+            this.headNode = currentNode;
+            this.tailNode = this.headNode;
         }
         else {
-            this.head.nextNode = currentNode;
+            const newNode = new Node(value);
+            if(this.headNode.nextNode == null) {
+                this.headNode.nextNode = newNode;
+            }
+            this.tailNode.nextNode = newNode;
+            this.tailNode = newNode;
         }
         return console.log(this);
     }
@@ -28,27 +33,35 @@ export default class LinkedList {
     prepend(value) {
         const currentNode = new Node(value);
         this.count++;
-        if(this.head == null) {
-            this.head = currentNode;
+        if(this.tailNode == null) {
+            this.tailNode = currentNode;
+            this.headNode = this.tailNode;
         }
-        return (console.log("prepend " + value));
+        else {
+            let prevNode = this.headNode;
+            this.headNode = new Node(value);
+            this.headNode.nextNode = prevNode;
+        }
+        //return console.log(this);
     }
 
     size() {
         return this.count;
     }
-    head() {
 
+    head() {
+        return this.headNode;
     }
     tail() {
-
+        return this.tailNode;
     }
 
     at(index) {
-        return this;
+        
     }
     pop() {
-
+        this.tail = null;
+        return this;
     }
     contains(value) {
 
@@ -57,7 +70,7 @@ export default class LinkedList {
 
     }
     toString() {
-
+        return ("no")
     }
 }
 
