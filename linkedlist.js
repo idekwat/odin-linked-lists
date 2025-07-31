@@ -21,13 +21,14 @@ export default class LinkedList {
         }
         else {
             const newNode = new Node(value);
+            this.count++;
             if(this.headNode.nextNode == null) {
                 this.headNode.nextNode = newNode;
             }
             this.tailNode.nextNode = newNode;
             this.tailNode = newNode;
         }
-        return console.log(this);
+        //return console.log(this);
     }
 
     prepend(value) {
@@ -57,20 +58,38 @@ export default class LinkedList {
     }
 
     at(index) {
-        
+        if(index > this.count) {
+            return console.log("index greater than node size");
+        }
+        else {        
+            let num = 1;
+            let node = this.headNode;
+            while(num<index) {
+                node = node.nextNode;
+                num++;
+            }
+            return node;
+        }
     }
     pop() {
-        this.tail = null;
-        return this;
-    }
-    contains(value) {
 
     }
-    find(value) {
+    contains(val) {
+
+    }
+    find(val) {
 
     }
     toString() {
-        return ("no")
+        let node = this.headNode;
+        let i = 0;
+        let str = "";
+        while(i < this.count) {
+            str += "( " + node.value + " ) -> ";
+            node = node.nextNode;
+            i++;
+        }
+        return str + "null"
     }
 }
 
